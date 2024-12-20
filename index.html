@@ -52,31 +52,6 @@
             }
         }
 
-        /* Animation for the "hello." text */
-        @keyframes fadeInHello {
-            0% {
-                opacity: 0;
-            }
-            30% {
-                opacity: 1;
-            }
-            60% {
-                opacity: 1;
-            }
-            100% {
-                opacity: 0;
-            }
-        }
-
-        /* Centering the hello text */
-        .hello {
-            position: absolute;
-            font-size: 48px;
-            font-weight: bold;
-            color: black;
-            animation: fadeInHello 4s forwards; /* Sync with background fade */
-        }
-
         @keyframes spin {
             0% {
                 transform: rotateY(0deg);
@@ -116,7 +91,6 @@
     </style>
 </head>
 <body>
-    <div class="hello">hello.</div>
     <div class="carousel">
         <img src="image1.jpg" alt="Image 1">
         <img src="image2.jpg" alt="Image 2">
