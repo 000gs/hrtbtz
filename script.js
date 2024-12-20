@@ -21,34 +21,35 @@ gallery.addEventListener('mouseout', () => {
 
 images.forEach((image) => {
     image.addEventListener('click', (e) => {
-        gallery.style.animationPlayState = 'paused';
-        images.forEach((img) => img.style.transform = 'scale(1)');
-        e.target.parentElement.style.transform = 'scale(1.5)';
+        gallery.style.animationPlayState = 'paused'; // Stop the carousel when clicked
+        images.forEach((img) => img.style.transform = 'scale(1)'); // Reset scaling
+        e.target.parentElement.style.transform = 'scale(1.5)'; // Enlarge clicked image
         descText.textContent = e.target.parentElement.getAttribute('data-text');
-        description.classList.add('show');
+        description.classList.add('show'); // Show description
     });
 
     image.addEventListener('mouseover', () => {
-        clearTimeout(hoverTimeout);
+        clearTimeout(hoverTimeout); // Prevent timeout from resuming the carousel too soon
     });
 
     image.addEventListener('mouseout', () => {
         hoverTimeout = setTimeout(() => {
             if (!isHovered) {
-                gallery.style.animationPlayState = 'running';
+                gallery.style.animationPlayState = 'running'; // Resume the carousel after 3 seconds
             }
         }, 3000);
     });
 });
 
 exitBtn.addEventListener('click', () => {
-    gallery.style.animationPlayState = 'running';
+    // Fade out description and exit button
     description.classList.add('fade-out');
     setTimeout(() => {
-        description.classList.remove('show');
-        description.classList.remove('fade-out');
+        description.classList.remove('show', 'fade-out'); // Hide description after fade-out
     }, 500); // Match the duration of the fade-out animation
 
+    // Resume the carousel and reset image scaling
+    gallery.style.animationPlayState = 'running';
     images.forEach((img) => img.style.transform = 'scale(1)');
     isHovered = false;
 });
