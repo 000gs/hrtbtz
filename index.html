@@ -1,21 +1,79 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Image Gallery</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to bottom, #1a1a1a, #333);
+            color: #fff;
+            overflow: hidden;
+        }
 
-  <link rel="icon" href=“icon.png">
+        .gallery {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            perspective: 1000px; /* Enables 3D effect */
+        }
 
-   <meta charset="UTF-8">
+        .carousel {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            transform-style: preserve-3d; /* Keeps child elements in 3D space */
+            animation: rotate 20s linear infinite;
+        }
 
-   <title>website name</title>
+        .carousel img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
 
-   <link href="/style.css" rel="stylesheet" type="text/css" media="all">
+        /* Arrange images in a circular layout */
+        .carousel img:nth-child(1) { transform: rotateY(0deg) translateZ(400px); }
+        .carousel img:nth-child(2) { transform: rotateY(45deg) translateZ(400px); }
+        .carousel img:nth-child(3) { transform: rotateY(90deg) translateZ(400px); }
+        .carousel img:nth-child(4) { transform: rotateY(135deg) translateZ(400px); }
+        .carousel img:nth-child(5) { transform: rotateY(180deg) translateZ(400px); }
+        .carousel img:nth-child(6) { transform: rotateY(225deg) translateZ(400px); }
+        .carousel img:nth-child(7) { transform: rotateY(270deg) translateZ(400px); }
+        .carousel img:nth-child(8) { transform: rotateY(315deg) translateZ(400px); }
 
- </head>
+        /* Smooth rotation animation */
+        @keyframes rotate {
+            from {
+                transform: rotateY(0deg);
+            }
+            to {
+                transform: rotateY(360deg);
+            }
+        }
+    </style>
+</head>
 <body>
-
-<h1>Hello Everyone</h1>
-
-<p>This is my website.</p>
-
+    <div class="gallery">
+        <div class="carousel">
+            <img src="https://via.placeholder.com/300x200?text=Image+1" alt="Image 1">
+            <img src="https://via.placeholder.com/300x200?text=Image+2" alt="Image 2">
+            <img src="https://via.placeholder.com/300x200?text=Image+3" alt="Image 3">
+            <img src="https://via.placeholder.com/300x200?text=Image+4" alt="Image 4">
+            <img src="https://via.placeholder.com/300x200?text=Image+5" alt="Image 5">
+            <img src="https://via.placeholder.com/300x200?text=Image+6" alt="Image 6">
+            <img src="https://via.placeholder.com/300x200?text=Image+7" alt="Image 7">
+            <img src="https://via.placeholder.com/300x200?text=Image+8" alt="Image 8">
+        </div>
+    </div>
 </body>
 </html>
