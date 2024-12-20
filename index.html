@@ -16,7 +16,7 @@
             perspective: 1000px;
             overflow: hidden;
             opacity: 0; /* Start hidden */
-            animation: fadeIn 2s forwards; /* Fade in effect */
+            animation: fadeInBackground 3s forwards; /* Extended fade-in effect */
         }
 
         .carousel {
@@ -36,15 +36,45 @@
             box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
         }
 
-        @keyframes fadeIn {
+        /* Fade-in effect for the background */
+        @keyframes fadeInBackground {
             0% {
                 opacity: 0;
+                background-color: white;
+            }
+            80% {
+                opacity: 1;
                 background-color: white;
             }
             100% {
                 opacity: 1;
                 background-color: transparent;
             }
+        }
+
+        /* Animation for the "hello." text */
+        @keyframes fadeInHello {
+            0% {
+                opacity: 0;
+            }
+            30% {
+                opacity: 1;
+            }
+            60% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+
+        /* Centering the hello text */
+        .hello {
+            position: absolute;
+            font-size: 48px;
+            font-weight: bold;
+            color: black;
+            animation: fadeInHello 3s forwards;
         }
 
         @keyframes spin {
@@ -86,6 +116,7 @@
     </style>
 </head>
 <body>
+    <div class="hello">hello.</div>
     <div class="carousel">
         <img src="image1.jpg" alt="Image 1">
         <img src="image2.jpg" alt="Image 2">
