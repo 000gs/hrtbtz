@@ -22,6 +22,7 @@
             width: 300px;
             height: 300px;
             transform-style: preserve-3d;
+            animation: spin 20s infinite linear;
         }
 
         .carousel img {
@@ -31,16 +32,6 @@
             object-fit: cover;
             border-radius: 10px;
             box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
-            animation: float 4s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-15px);
-            }
         }
 
         @keyframes spin {
@@ -54,39 +45,30 @@
 
         .carousel img:nth-child(1) {
             transform: rotateY(0deg) translateZ(300px);
-            animation-delay: 0s;
         }
         .carousel img:nth-child(2) {
             transform: rotateY(40deg) translateZ(300px);
-            animation-delay: 0.2s;
         }
         .carousel img:nth-child(3) {
             transform: rotateY(80deg) translateZ(300px);
-            animation-delay: 0.4s;
         }
         .carousel img:nth-child(4) {
             transform: rotateY(120deg) translateZ(300px);
-            animation-delay: 0.6s;
         }
         .carousel img:nth-child(5) {
             transform: rotateY(160deg) translateZ(300px);
-            animation-delay: 0.8s;
         }
         .carousel img:nth-child(6) {
             transform: rotateY(200deg) translateZ(300px);
-            animation-delay: 1s;
         }
         .carousel img:nth-child(7) {
             transform: rotateY(240deg) translateZ(300px);
-            animation-delay: 1.2s;
         }
         .carousel img:nth-child(8) {
             transform: rotateY(280deg) translateZ(300px);
-            animation-delay: 1.4s;
         }
         .carousel img:nth-child(9) {
             transform: rotateY(320deg) translateZ(300px);
-            animation-delay: 1.6s;
         }
     </style>
 </head>
