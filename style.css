@@ -6,7 +6,7 @@ body {
     align-items: center;
     text-align: center;
     height: 100vh;
-    background: black;
+    background: rgb(255, 255, 255);
     overflow: hidden;
   }
   
@@ -42,8 +42,8 @@ body {
   .btn {
     position: absolute;
     bottom: -80px;
-    background: crimson;
-    color: #fff;
+    background: rgb(255, 255, 255);
+    color: #000000;
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
