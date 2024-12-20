@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive 3D Image Carousel</title>
+    <title>3D Image Carousel</title>
     <style>
+        /* Body settings to center everything */
         body {
             margin: 0;
             padding: 0;
@@ -13,12 +14,13 @@
             align-items: center;
             height: 100vh;
             background-color: white;
-            perspective: 1000px;
+            perspective: 1000px; /* Set perspective for the 3D effect */
             overflow: hidden;
-            opacity: 0;
-            animation: fadeInBackground 2.5s forwards;
+            opacity: 0; /* Start hidden */
+            animation: fadeInBackground 2.5s forwards; /* Faster fade-in effect */
         }
 
+        /* Carousel settings */
         .carousel-wrapper {
             position: relative;
             width: 300px;
@@ -30,7 +32,7 @@
             width: 100%;
             height: 100%;
             transform-style: preserve-3d;
-            transition: transform 0.1s ease-out;
+            animation: spin 30s infinite linear;
         }
 
         .carousel img {
@@ -42,6 +44,7 @@
             box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
         }
 
+        /* Fade-in effect for the background */
         @keyframes fadeInBackground {
             0% {
                 opacity: 0;
@@ -57,6 +60,7 @@
             }
         }
 
+        /* Animation for rotating the carousel */
         @keyframes spin {
             0% {
                 transform: rotateY(0deg);
@@ -66,32 +70,33 @@
             }
         }
 
+        /* Position the images in the carousel */
         .carousel img:nth-child(1) {
-            transform: rotateY(0deg) translateZ(350px);
+            transform: rotateY(0deg) translateZ(300px);
         }
         .carousel img:nth-child(2) {
-            transform: rotateY(40deg) translateZ(350px);
+            transform: rotateY(40deg) translateZ(300px);
         }
         .carousel img:nth-child(3) {
-            transform: rotateY(80deg) translateZ(350px);
+            transform: rotateY(80deg) translateZ(300px);
         }
         .carousel img:nth-child(4) {
-            transform: rotateY(120deg) translateZ(350px);
+            transform: rotateY(120deg) translateZ(300px);
         }
         .carousel img:nth-child(5) {
-            transform: rotateY(160deg) translateZ(350px);
+            transform: rotateY(160deg) translateZ(300px);
         }
         .carousel img:nth-child(6) {
-            transform: rotateY(200deg) translateZ(350px);
+            transform: rotateY(200deg) translateZ(300px);
         }
         .carousel img:nth-child(7) {
-            transform: rotateY(240deg) translateZ(350px);
+            transform: rotateY(240deg) translateZ(300px);
         }
         .carousel img:nth-child(8) {
-            transform: rotateY(280deg) translateZ(350px);
+            transform: rotateY(280deg) translateZ(300px);
         }
         .carousel img:nth-child(9) {
-            transform: rotateY(320deg) translateZ(350px);
+            transform: rotateY(320deg) translateZ(300px);
         }
     </style>
 </head>
@@ -109,81 +114,5 @@
             <img src="image9.jpg" alt="Image 9">
         </div>
     </div>
-
-    <script>
-        let carousel = document.querySelector('.carousel');
-        let isMouseDown = false;
-        let startX, startTime, spinSpeed = 0;
-        let isDragging = false;
-        let autoSpinInterval;
-
-        const defaultSpeed = 0.1; // Default rotation speed in degrees per frame
-        const spinDecay = 0.005; // Speed decay rate when mouse is released
-        const spinThreshold = 0.05; // Threshold at which spinning stops
-
-        // Function to start automatic spinning after 3 seconds of inactivity
-        function startAutoSpin() {
-            if (!autoSpinInterval) {
-                autoSpinInterval = setInterval(() => {
-                    spinSpeed = defaultSpeed; // Reset to default speed
-                    updateRotation();
-                }, 10);
-            }
-        }
-
-        function stopAutoSpin() {
-            if (autoSpinInterval) {
-                clearInterval(autoSpinInterval);
-                autoSpinInterval = null;
-            }
-        }
-
-        function updateRotation() {
-            if (Math.abs(spinSpeed) > spinThreshold) {
-                let rotation = parseFloat(getComputedStyle(carousel).transform.split(',')[4]) || 0;
-                rotation += spinSpeed;
-                carousel.style.transform = `rotateY(${rotation}deg)`;
-                spinSpeed *= (1 - spinDecay); // Decay the speed gradually
-            } else {
-                stopAutoSpin(); // Stop auto-spin if the speed is below threshold
-            }
-        }
-
-        // Mouse down event to start dragging
-        carousel.addEventListener('mousedown', (e) => {
-            isMouseDown = true;
-            startX = e.clientX;
-            startTime = Date.now();
-            stopAutoSpin(); // Stop auto-spin when user starts dragging
-        });
-
-        // Mouse move event to track dragging
-        carousel.addEventListener('mousemove', (e) => {
-            if (isMouseDown) {
-                let deltaX = e.clientX - startX;
-                let deltaTime = Date.now() - startTime;
-
-                spinSpeed = deltaX / deltaTime; // Calculate speed based on mouse movement
-                carousel.style.transform = `rotateY(${parseFloat(getComputedStyle(carousel).transform.split(',')[4]) || 0 + spinSpeed}deg)`;
-            }
-        });
-
-        // Mouse up event to release the carousel
-        carousel.addEventListener('mouseup', () => {
-            isMouseDown = false;
-            startAutoSpin(); // Start auto spinning after 3 seconds
-        });
-
-        // Mouse out event to ensure stopping the drag if mouse leaves the carousel
-        carousel.addEventListener('mouseleave', () => {
-            if (isMouseDown) {
-                isMouseDown = false;
-                startAutoSpin(); // Start auto spinning after 3 seconds
-            }
-        });
-
-        // Initialize auto-spin when the page loads
-        startAutoSpin();
-    </script>
 </body>
 </html>
