@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3D Image Gallery</title>
+    <title>3D Image Carousel</title>
     <style>
         body {
             margin: 0;
@@ -17,25 +17,24 @@
             overflow: hidden;
         }
 
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
+        .carousel {
+            position: relative;
+            width: 300px;
+            height: 300px;
             transform-style: preserve-3d;
-            animation: rotate 20s infinite linear;
+            animation: spin 20s infinite linear;
         }
 
-        .gallery img {
+        .carousel img {
+            position: absolute;
             width: 200px;
             height: 200px;
             object-fit: cover;
             border-radius: 10px;
             box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
-            transform-origin: center;
-            animation: float 3s ease-in-out infinite;
         }
 
-        @keyframes rotate {
+        @keyframes spin {
             0% {
                 transform: rotateY(0deg);
             }
@@ -44,18 +43,37 @@
             }
         }
 
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
+        .carousel img:nth-child(1) {
+            transform: rotateY(0deg) translateZ(300px);
+        }
+        .carousel img:nth-child(2) {
+            transform: rotateY(40deg) translateZ(300px);
+        }
+        .carousel img:nth-child(3) {
+            transform: rotateY(80deg) translateZ(300px);
+        }
+        .carousel img:nth-child(4) {
+            transform: rotateY(120deg) translateZ(300px);
+        }
+        .carousel img:nth-child(5) {
+            transform: rotateY(160deg) translateZ(300px);
+        }
+        .carousel img:nth-child(6) {
+            transform: rotateY(200deg) translateZ(300px);
+        }
+        .carousel img:nth-child(7) {
+            transform: rotateY(240deg) translateZ(300px);
+        }
+        .carousel img:nth-child(8) {
+            transform: rotateY(280deg) translateZ(300px);
+        }
+        .carousel img:nth-child(9) {
+            transform: rotateY(320deg) translateZ(300px);
         }
     </style>
 </head>
 <body>
-    <div class="gallery">
+    <div class="carousel">
         <img src="image1.jpg" alt="Image 1">
         <img src="image2.jpg" alt="Image 2">
         <img src="image3.jpg" alt="Image 3">
