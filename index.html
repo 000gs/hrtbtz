@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3D Image Gallery</title>
+    <title>3D Image Gallery with Floating Animation</title>
     <style>
         body {
             margin: 0;
@@ -39,6 +39,7 @@
             object-fit: cover;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            animation: float 3s ease-in-out infinite; /* Floating animation */
         }
 
         /* Arrange images in a circular layout */
@@ -51,6 +52,16 @@
         .carousel img:nth-child(7) { transform: rotateY(270deg) translateZ(400px); }
         .carousel img:nth-child(8) { transform: rotateY(315deg) translateZ(400px); }
 
+        /* Floating animation for images */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
         /* Smooth rotation animation */
         @keyframes rotate {
             from {
@@ -59,6 +70,11 @@
             to {
                 transform: rotateY(360deg);
             }
+        }
+
+        /* Stop rotation on hover */
+        .carousel:hover {
+            animation-play-state: paused;
         }
     </style>
 </head>
@@ -75,5 +91,23 @@
             <img src="https://via.placeholder.com/300x200?text=Image+8" alt="Image 8">
         </div>
     </div>
+
+    <script>
+        const carousel = document.querySelector('.carousel');
+
+        // Pause rotation on hover
+        let hoverTimeout;
+        carousel.addEventListener('mouseover', () => {
+            carousel.style.animationPlayState = 'paused';
+            if (hoverTimeout) clearTimeout(hoverTimeout);
+        });
+
+        // Resume rotation 10 seconds after hover ends
+        carousel.addEventListener('mouseout', () => {
+            hoverTimeout = setTimeout(() => {
+                carousel.style.animationPlayState = 'running';
+            }, 10000);
+        });
+    </script>
 </body>
 </html>
