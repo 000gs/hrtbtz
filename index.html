@@ -15,8 +15,8 @@
             background-color: white;
             perspective: 1000px;
             overflow: hidden;
-            opacity: 0; /* Start hidden */
-            animation: fadeInBackground 2.5s forwards; /* Faster fade-in effect */
+            opacity: 0;
+            animation: fadeInBackground 2.5s forwards;
         }
 
         .carousel {
@@ -25,6 +25,7 @@
             height: 300px;
             transform-style: preserve-3d;
             animation: spin 30s infinite linear;
+            transition: animation 0.5s ease-out; /* To stop the spin smoothly */
         }
 
         .carousel img {
@@ -34,9 +35,9 @@
             object-fit: cover;
             border-radius: 10px;
             box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
         }
 
-        /* Faster background fade-in effect */
         @keyframes fadeInBackground {
             0% {
                 opacity: 0;
@@ -88,6 +89,28 @@
         .carousel img:nth-child(9) {
             transform: rotateY(320deg) translateZ(300px);
         }
+
+        /* Text and button styles */
+        .info-text {
+            display: none;
+            font-size: 14px;
+            color: #333;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .exit-btn {
+            display: none;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 5px 10px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -102,5 +125,53 @@
         <img src="image8.jpg" alt="Image 8">
         <img src="image9.jpg" alt="Image 9">
     </div>
+    <p class="info-text">This is some additional information that fades in when the middle image is clicked.</p>
+    <button class="exit-btn">Exit</button>
+
+    <script>
+        const carousel = document.querySelector('.carousel');
+        const images = document.querySelectorAll('.carousel img');
+        const infoText = document.querySelector('.info-text');
+        const exitBtn = document.querySelector('.exit-btn');
+
+        let isCarouselStopped = false;
+
+        images.forEach((image, index) => {
+            image.addEventListener('click', () => {
+                if (!isCarouselStopped && (index === 4)) { // Middle image (index 4)
+                    // Stop the carousel
+                    carousel.style.animationPlayState = 'paused';
+                    isCarouselStopped = true;
+
+                    // Fade in the text and the exit button
+                    infoText.style.display = 'block';
+                    exitBtn.style.display = 'block';
+
+                    // Fade-in effects
+                    setTimeout(() => {
+                        infoText.style.opacity = 1;
+                        exitBtn.style.opacity = 1;
+                    }, 100);
+
+                }
+            });
+        });
+
+        exitBtn.addEventListener('click', () => {
+            // Hide the text and button
+            infoText.style.opacity = 0;
+            exitBtn.style.opacity = 0;
+
+            // Fade-out effects
+            setTimeout(() => {
+                infoText.style.display = 'none';
+                exitBtn.style.display = 'none';
+            }, 500);
+
+            // Restart the carousel
+            carousel.style.animationPlayState = 'running';
+            isCarouselStopped = false;
+        });
+    </script>
 </body>
 </html>
