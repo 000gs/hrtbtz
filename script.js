@@ -43,7 +43,12 @@ images.forEach((image) => {
 
 exitBtn.addEventListener('click', () => {
     gallery.style.animationPlayState = 'running';
-    description.classList.remove('show');
+    description.classList.add('fade-out');
+    setTimeout(() => {
+        description.classList.remove('show');
+        description.classList.remove('fade-out');
+    }, 500); // Match the duration of the fade-out animation
+
     images.forEach((img) => img.style.transform = 'scale(1)');
     isHovered = false;
 });

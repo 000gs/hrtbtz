@@ -85,3 +85,10 @@ body {
     opacity: 1;
     transform: translateX(-50%) translateY(0);
 }
+
+/* Fading out description and exit button */
+.fade-out {
+    opacity: 0;
+    transform: translateY(100%);
+    transition: opacity 0.5s, transform 0.5s;
+}
