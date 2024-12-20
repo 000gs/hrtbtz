@@ -15,6 +15,8 @@
             background-color: white;
             perspective: 1000px;
             overflow: hidden;
+            opacity: 0; /* Start hidden */
+            animation: fadeIn 2s forwards; /* Fade in effect */
         }
 
         .carousel {
@@ -32,6 +34,17 @@
             object-fit: cover;
             border-radius: 10px;
             box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                background-color: white;
+            }
+            100% {
+                opacity: 1;
+                background-color: transparent;
+            }
         }
 
         @keyframes spin {
